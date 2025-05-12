@@ -1,0 +1,127 @@
+/* Basic Reset & Defaults */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px; /* Base font size */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333; /* Dark grey text */
+    background-color: #f8f9fa; /* Light grey background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    padding: 2rem; /* Add some padding around the content */
+    text-align: center; /* Center text within elements */
+}
+
+/* Main Content Container */
+.container {
+    max-width: 800px; /* Limit content width */
+    width: 100%;
+    padding: 2rem;
+    background-color: #ffffff; /* White card background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    animation: fadeIn 0.8s ease-out; /* Simple fade-in animation */
+}
+
+/* Header Styling */
+header {
+    margin-bottom: 2rem; /* Space below header */
+}
+
+h1 {
+    font-size: 2.5rem; /* Larger heading */
+    font-weight: 700; /* Bolder heading */
+    color: #212529; /* Slightly darker heading color */
+    margin-bottom: 0.75rem; /* Space below H1 */
+}
+
+.subtitle {
+    font-size: 1.1rem; /* Slightly larger paragraph text */
+    color: #6c757d; /* Muted grey for subtitle */
+    max-width: 600px; /* Limit subtitle width */
+    margin-left: auto; /* Center subtitle if container is wider */
+    margin-right: auto;
+}
+
+/* Optional: Placeholder Styling (Uncomment if you use the placeholder section) */
+/*
+.projects-placeholder {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef; // Light divider line
+}
+
+.projects-placeholder h2 {
+    font-size: 1.5rem;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+.projects-placeholder p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+*/
+
+/* Optional: Footer Styling (Uncomment if you add a footer) */
+/*
+footer {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #adb5bd; // Lighter grey for footer
+}
+
+footer a {
+    color: #007bff; // Standard link blue
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+*/
+
+/* Simple Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem; /* Less padding on small screens */
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem; /* Slightly smaller H1 on mobile */
+    }
+
+    .subtitle {
+        font-size: 1rem; /* Slightly smaller subtitle on mobile */
+    }
+}
