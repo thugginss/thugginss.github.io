@@ -14,34 +14,155 @@ html {
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.7; /* Slightly increased line-height for readability */
-    color: #3a414e; /* Slightly softer dark grey */
+    line-height: 1.7;
+    color: #3a414e;
     /* --- Spring Gradient Background --- */
-    background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%); /* Light cyan to light green */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
+    /* display: flex; Removed to allow navbar at top and content to flow naturally */
+    /* flex-direction: column; Removed */
+    /* justify-content: center; Removed */
+    /* align-items: center; Removed */
     min-height: 100vh;
-    padding: 2rem 1rem; /* Add horizontal padding */
+    /* padding: 2rem 1rem; Adjusted later for navbar */
     text-align: center;
-    overflow-x: hidden; /* Prevent potential horizontal scroll */
+    overflow-x: hidden;
 }
 
-/* Main Content Container */
+/* --- Navigation Bar --- */
+.navbar {
+    background-color: #fff; /* White background for the navbar */
+    padding: 0.75rem 2rem; /* Padding around the navbar */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    width: 100%;
+    position: sticky; /* Makes the navbar stick to the top on scroll */
+    top: 0;
+    z-index: 1000; /* Ensure navbar is above other content */
+}
+
+.nav-container-menu {
+    max-width: 1100px; /* Max width for navbar content */
+    margin: 0 auto; /* Center navbar content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #00796b; /* Accent color */
+    text-decoration: none;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative; /* For dropdown positioning */
+    margin-left: 1.5rem; /* Spacing between nav items */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #3a414e; /* Main text color */
+    font-weight: 500;
+    padding: 0.5rem 0.25rem; /* Padding for clickable area */
+    transition: color 0.3s ease;
+    display: flex; /* To align arrow with text */
+    align-items: center;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: #00796b; /* Accent color on hover */
+}
+
+.dropdown-arrow {
+    font-size: 0.7em; /* Smaller arrow */
+    margin-left: 0.3rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-item.dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg); /* Flip arrow on hover */
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the parent item */
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0.25rem 0 0; /* Small gap from parent */
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-width: 200px; /* Minimum width for dropdown */
+    z-index: 1001;
+    text-align: left; /* Align dropdown text to the left */
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block; /* Show on hover */
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 0.6rem 1.2rem;
+    color: #3a414e;
+    text-decoration: none;
+    font-weight: 400; /* Regular weight for dropdown items */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping in dropdown items */
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus {
+    background-color: #e8f5e9; /* Light green background on hover */
+    color: #00796b;
+}
+
+/* Nav Toggler for Mobile (Basic Styling) */
+.nav-toggler {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+}
+
+.nav-toggler span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #3a414e;
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Main Content Container - ensure it's below sticky navbar */
 .container {
     max-width: 750px;
-    width: 100%;
-    padding: 2.5rem 2rem; /* Increased padding */
+    width: 90%; /* Use percentage for better responsiveness */
+    margin: 2rem auto; /* Center the container and add top margin */
+    padding: 2.5rem 2rem;
     background-color: #ffffff;
-    border-radius: 12px; /* Slightly more pronounced rounding */
-    /* --- Soft, Modern Shadow --- */
-    box-shadow: 0 8px 25px rgba(0, 128, 128, 0.1); /* Teal-ish shadow hint */
-    animation: fadeInScaleUp 0.7s ease-out forwards; /* Add scale effect */
-    opacity: 0; /* Start hidden for animation */
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 128, 128, 0.1);
+    animation: fadeInScaleUp 0.7s ease-out forwards;
+    opacity: 0;
+    text-align: center; /* Keep content inside container centered */
 }
 
-/* Header Styling */
+/* Header Styling (for the "Welcome" header inside .container) */
 header {
     margin-bottom: 2.5rem;
 }
@@ -49,15 +170,14 @@ header {
 h1 {
     font-size: 2.6rem;
     font-weight: 700;
-    /* --- Spring Accent Color --- */
-    color: #00796b; /* A nice medium Teal */
+    color: #00796b;
     margin-bottom: 1rem;
     line-height: 1.3;
 }
 
 .subtitle {
     font-size: 1.15rem;
-    color: #5f6c7b; /* Muted blue-grey */
+    color: #5f6c7b;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -67,65 +187,58 @@ h1 {
 .projects-placeholder {
     margin-top: 2.5rem;
     padding-top: 2rem;
-    border-top: 1px solid #e0e0e0; /* Light grey separator */
+    border-top: 1px solid #e0e0e0;
 }
 
-.projects-placeholder h2 {
+.projects-placeholder h2,
+.technology-placeholder h2 {
     font-size: 1.6rem;
-    color: #333; /* Darker heading for contrast */
+    color: #333;
     margin-bottom: 0.75rem;
     font-weight: 700;
 }
 
-.projects-placeholder p {
+.projects-placeholder p,
+.technology-placeholder p {
     font-size: 1rem;
-    color: #6c757d; /* Consistent muted grey */
+    color: #6c757d;
 }
 
-/* Techology Placeholder Styling */
+/* Technology Placeholder Styling */
 .technology-placeholder {
     margin-top: 2.5rem;
     padding-top: 2rem;
-    border-top: 1px solid #e0e0e0; /* Light grey separator */
-}
-
-.technology-placeholder h2 {
-    font-size: 1.6rem;
-    color: #333; /* Darker heading for contrast */
-    margin-bottom: 0.75rem;
-    font-weight: 700;
-}
-
-.technology-placeholder p {
-    font-size: 1rem;
-    color: #6c757d; /* Consistent muted grey */
+    border-top: 1px solid #e0e0e0;
 }
 
 /* Footer Styling */
 footer {
-    margin-top: 2.5rem; /* Space above footer */
+    margin: 2.5rem auto 2rem; /* Center footer and add margins */
     padding-top: 1rem;
+    max-width: 750px; /* Align with container width */
+    width: 90%;
+    text-align: center; /* Ensure footer text is centered */
 }
 
 footer p {
     font-size: 0.95rem;
-    color: #6c757d; /* Muted grey */
-    margin-bottom: 0.5rem; /* Space between footer lines */
+    color: #6c757d;
+    margin-bottom: 0.5rem;
 }
 
-/* Link Styling */
+/* Link Styling (general) */
 a {
-    color: #00796b; /* Use accent color for links */
+    color: #00796b;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition */
+    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 a:hover,
 a:focus {
-    color: #004d40; /* Darker teal on hover/focus */
-    text-decoration: underline; /* Underline on hover/focus */
-    outline: none; /* Remove default focus outline if needed */
+    color: #004d40;
+    text-decoration: underline;
+    outline: none;
 }
 
 /* Fade-in and Scale Animation */
@@ -141,9 +254,80 @@ a:focus {
 }
 
 /* Responsive Adjustments */
+
+/* Navbar Responsive */
+@media (max-width: 992px) { /* Adjust breakpoint as needed */
+    .nav-menu {
+        display: none; /* Hide desktop menu */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%; /* Position below navbar */
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 1rem 0;
+    }
+
+    .nav-menu.active {
+        display: flex; /* Show mobile menu when active */
+    }
+
+    .nav-item {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-link {
+        padding: 0.8rem 1rem;
+        width: 100%;
+        justify-content: center; /* Center link text */
+    }
+
+    .dropdown-menu {
+        position: static; /* Change dropdown to static for mobile */
+        box-shadow: none;
+        border-top: 1px solid #eee;
+        width: 100%;
+        border-radius: 0;
+        min-width: unset;
+        background-color: #f8f9fa; /* Slightly different background for mobile dropdown */
+    }
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: none; /* Disable hover for mobile; use click/tap if needed */
+    }
+     /* If you want click to open dropdowns on mobile, JS would be needed to toggle .active on .dropdown-menu */
+    .nav-item.dropdown .dropdown-menu { /* Always show submenu items under parent in mobile if parent is visible */
+         display: block;
+         padding-left: 1rem; /* Indent sub-menu items */
+    }
+    .dropdown-menu li a {
+        padding: 0.6rem 1.5rem; /* Adjust padding for mobile */
+    }
+
+
+    .nav-toggler {
+        display: block; /* Show hamburger icon */
+    }
+
+    /* Hamburger animation */
+    .nav-toggler.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .nav-toggler.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .nav-toggler.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+
 @media (max-width: 768px) {
     .container {
         padding: 2rem 1.5rem;
+        width: 95%;
     }
     h1 {
         font-size: 2.2rem;
@@ -154,12 +338,19 @@ a:focus {
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        padding: 0.75rem 1rem;
+    }
+    .nav-brand {
+        font-size: 1.3rem;
+    }
     body {
-        padding: 1rem 0.5rem; /* Less padding on very small screens */
+        /* padding: 1rem 0.5rem; No longer needed with sticky nav */
     }
     .container {
         padding: 1.5rem 1rem;
         border-radius: 8px;
+        margin: 1.5rem auto;
     }
     h1 {
         font-size: 1.9rem;
@@ -167,7 +358,8 @@ a:focus {
     .subtitle {
         font-size: 1rem;
     }
-    .projects-placeholder h2 {
+    .projects-placeholder h2,
+    .technology-placeholder h2 {
         font-size: 1.4rem;
     }
 }
