@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to My GitHub Page</title>
-    <!-- Link to the CSS file -->
     <link rel="stylesheet" href="style.css">
-    <!-- Optional: Link to Google Fonts for a nicer font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -19,7 +17,7 @@
             <ul class="nav-menu">
                 <li class="nav-item"><a href="https://thugginss.github.io/" class="nav-link">Home</a></li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link">Projects <span class="dropdown-arrow">▾</span></a>
+                    <a href="#" class="nav-link dropdown-toggle">Projects <span class="dropdown-arrow">▾</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="https://thugginss.github.io/Cookmate/" target="_blank" rel="noopener noreferrer">Cookmate</a></li>
                         <li><a href="#">Placeholder 1</a></li>
@@ -27,7 +25,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link">Professional Experience <span class="dropdown-arrow">▾</span></a>
+                    <a href="#" class="nav-link dropdown-toggle">Professional Experience <span class="dropdown-arrow">▾</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Placeholder 1</a></li>
                         <li><a href="#">Placeholder 2</a></li>
@@ -35,7 +33,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link">Personal Design <span class="dropdown-arrow">▾</span></a>
+                    <a href="#" class="nav-link dropdown-toggle">Personal Design <span class="dropdown-arrow">▾</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Placeholder 1</a></li>
                         <li><a href="#">Placeholder 2</a></li>
@@ -43,7 +41,6 @@
                     </ul>
                 </li>
             </ul>
-            <!-- A simple hamburger icon for potential mobile use - functionality not yet implemented -->
             <div class="nav-toggler">
                 <span></span>
                 <span></span>
@@ -79,17 +76,49 @@
         <p>Find me on <a href="https://www.linkedin.com/in/thomashuggins/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
     </footer>
 
-    <!-- Basic JS for mobile menu toggle (optional, can be expanded) -->
     <script>
         const navToggler = document.querySelector('.nav-toggler');
         const navMenu = document.querySelector('.nav-menu');
+        const dropdownToggles = document.querySelectorAll('.nav-menu .dropdown-toggle');
 
+        // Toggle main mobile menu
         if (navToggler && navMenu) {
             navToggler.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
                 navToggler.classList.toggle('active');
+                // Close all dropdowns when main menu is closed
+                if (!navMenu.classList.contains('active')) {
+                    dropdownToggles.forEach(toggle => {
+                        const dropdownMenu = toggle.nextElementSibling;
+                        if (dropdownMenu && dropdownMenu.classList.contains('active')) {
+                            dropdownMenu.classList.remove('active');
+                            toggle.querySelector('.dropdown-arrow').classList.remove('open');
+                        }
+                    });
+                }
             });
         }
+
+        // Toggle individual dropdowns in mobile view
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                // Prevent default anchor behavior only if in mobile view (menu is active)
+                // and it's not a link meant to navigate (like "Home")
+                if (navMenu.classList.contains('active')) { // Check if mobile menu is active
+                    e.preventDefault(); // Stop link navigation for dropdown toggles
+                    const dropdownMenu = toggle.nextElementSibling; // The ul.dropdown-menu
+                    const arrow = toggle.querySelector('.dropdown-arrow');
+
+                    if (dropdownMenu) {
+                        dropdownMenu.classList.toggle('active');
+                        if (arrow) {
+                             arrow.classList.toggle('open'); // For rotating arrow
+                        }
+                    }
+                }
+                // If not in mobile view (desktop), let hover CSS handle it and links navigate if they have hrefs
+            });
+        });
     </script>
 </body>
 </html>

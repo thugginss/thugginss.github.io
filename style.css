@@ -16,32 +16,26 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.7;
     color: #3a414e;
-    /* --- Spring Gradient Background --- */
     background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
-    /* display: flex; Removed to allow navbar at top and content to flow naturally */
-    /* flex-direction: column; Removed */
-    /* justify-content: center; Removed */
-    /* align-items: center; Removed */
     min-height: 100vh;
-    /* padding: 2rem 1rem; Adjusted later for navbar */
     text-align: center;
     overflow-x: hidden;
 }
 
 /* --- Navigation Bar --- */
 .navbar {
-    background-color: #fff; /* White background for the navbar */
-    padding: 0.75rem 2rem; /* Padding around the navbar */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    background-color: #fff;
+    padding: 0.75rem 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     width: 100%;
-    position: sticky; /* Makes the navbar stick to the top on scroll */
+    position: sticky;
     top: 0;
-    z-index: 1000; /* Ensure navbar is above other content */
+    z-index: 1000;
 }
 
 .nav-container-menu {
-    max-width: 1100px; /* Max width for navbar content */
-    margin: 0 auto; /* Center navbar content */
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,7 +44,7 @@ body {
 .nav-brand {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #00796b; /* Accent color */
+    color: #00796b;
     text-decoration: none;
 }
 
@@ -63,75 +57,79 @@ body {
 }
 
 .nav-item {
-    position: relative; /* For dropdown positioning */
-    margin-left: 1.5rem; /* Spacing between nav items */
+    position: relative;
+    margin-left: 1.5rem;
 }
 
 .nav-link {
     text-decoration: none;
-    color: #3a414e; /* Main text color */
+    color: #3a414e;
     font-weight: 500;
-    padding: 0.5rem 0.25rem; /* Padding for clickable area */
+    padding: 0.5rem 0.25rem;
     transition: color 0.3s ease;
-    display: flex; /* To align arrow with text */
+    display: flex;
     align-items: center;
 }
 
 .nav-link:hover,
 .nav-link:focus {
-    color: #00796b; /* Accent color on hover */
+    color: #00796b;
 }
 
 .dropdown-arrow {
-    font-size: 0.7em; /* Smaller arrow */
+    font-size: 0.7em;
     margin-left: 0.3rem;
     transition: transform 0.3s ease;
 }
-
-.nav-item.dropdown:hover .dropdown-arrow {
-    transform: rotate(180deg); /* Flip arrow on hover */
+.dropdown-arrow.open { /* Class added by JS for mobile active dropdown */
+    transform: rotate(180deg);
 }
 
-/* Dropdown Menu */
+
+/* Desktop Dropdown Menu (Hover) */
 .dropdown-menu {
-    display: none; /* Hidden by default */
+    display: none;
     position: absolute;
-    top: 100%; /* Position below the parent item */
+    top: 100%;
     left: 0;
     background-color: #fff;
     list-style: none;
     padding: 0.5rem 0;
-    margin: 0.25rem 0 0; /* Small gap from parent */
+    margin: 0.25rem 0 0;
     border-radius: 6px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    min-width: 200px; /* Minimum width for dropdown */
+    min-width: 200px;
     z-index: 1001;
-    text-align: left; /* Align dropdown text to the left */
+    text-align: left;
 }
 
-.nav-item.dropdown:hover .dropdown-menu {
-    display: block; /* Show on hover */
+.nav-item.dropdown:hover > .nav-link .dropdown-arrow { /* Arrow rotation on desktop hover */
+    transform: rotate(180deg);
 }
+.nav-item.dropdown:hover > .dropdown-menu { /* Show on desktop hover */
+    display: block;
+}
+
 
 .dropdown-menu li a {
     display: block;
     padding: 0.6rem 1.2rem;
     color: #3a414e;
     text-decoration: none;
-    font-weight: 400; /* Regular weight for dropdown items */
+    font-weight: 400;
     transition: background-color 0.3s ease, color 0.3s ease;
-    white-space: nowrap; /* Prevent text wrapping in dropdown items */
+    white-space: nowrap;
 }
 
 .dropdown-menu li a:hover,
 .dropdown-menu li a:focus {
-    background-color: #e8f5e9; /* Light green background on hover */
+    background-color: #e8f5e9;
     color: #00796b;
 }
 
-/* Nav Toggler for Mobile (Basic Styling) */
+/* Nav Toggler for Mobile */
 .nav-toggler {
-    display: none; /* Hidden on desktop */
+    display: none;
     cursor: pointer;
     background: none;
     border: none;
@@ -147,22 +145,20 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-
-/* Main Content Container - ensure it's below sticky navbar */
+/* Main Content Container */
 .container {
     max-width: 750px;
-    width: 90%; /* Use percentage for better responsiveness */
-    margin: 2rem auto; /* Center the container and add top margin */
+    width: 90%;
+    margin: 2rem auto;
     padding: 2.5rem 2rem;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 128, 128, 0.1);
     animation: fadeInScaleUp 0.7s ease-out forwards;
     opacity: 0;
-    text-align: center; /* Keep content inside container centered */
+    text-align: center;
 }
 
-/* Header Styling (for the "Welcome" header inside .container) */
 header {
     margin-bottom: 2.5rem;
 }
@@ -183,8 +179,8 @@ h1 {
     margin-right: auto;
 }
 
-/* Projects Placeholder Styling */
-.projects-placeholder {
+.projects-placeholder,
+.technology-placeholder {
     margin-top: 2.5rem;
     padding-top: 2rem;
     border-top: 1px solid #e0e0e0;
@@ -204,20 +200,12 @@ h1 {
     color: #6c757d;
 }
 
-/* Technology Placeholder Styling */
-.technology-placeholder {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e0e0e0;
-}
-
-/* Footer Styling */
 footer {
-    margin: 2.5rem auto 2rem; /* Center footer and add margins */
+    margin: 2.5rem auto 2rem;
     padding-top: 1rem;
-    max-width: 750px; /* Align with container width */
+    max-width: 750px;
     width: 90%;
-    text-align: center; /* Ensure footer text is centered */
+    text-align: center;
 }
 
 footer p {
@@ -226,7 +214,6 @@ footer p {
     margin-bottom: 0.5rem;
 }
 
-/* Link Styling (general) */
 a {
     color: #00796b;
     text-decoration: none;
@@ -241,7 +228,6 @@ a:focus {
     outline: none;
 }
 
-/* Fade-in and Scale Animation */
 @keyframes fadeInScaleUp {
     from {
         opacity: 0;
@@ -254,64 +240,85 @@ a:focus {
 }
 
 /* Responsive Adjustments */
-
-/* Navbar Responsive */
-@media (max-width: 992px) { /* Adjust breakpoint as needed */
+@media (max-width: 992px) {
     .nav-menu {
-        display: none; /* Hide desktop menu */
+        display: none; /* Hidden by default, JS will toggle .active */
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 100%; /* Position below navbar */
+        top: 100%;
         left: 0;
         background-color: #fff;
         box-shadow: 0 5px 10px rgba(0,0,0,0.1);
         padding: 1rem 0;
+        max-height: calc(100vh - 60px); /* Max height for scrollability, adjust 60px to navbar height */
+        overflow-y: auto; /* Enable scroll if menu is too long */
     }
 
-    .nav-menu.active {
-        display: flex; /* Show mobile menu when active */
+    .nav-menu.active { /* When toggled by JS */
+        display: flex;
     }
 
     .nav-item {
         margin-left: 0;
         width: 100%;
-        text-align: center;
+        text-align: left; /* Align text to left in mobile menu */
     }
+    .nav-item.dropdown:hover > .dropdown-menu { /* Disable desktop hover behavior for mobile */
+        display: none;
+    }
+     .nav-item.dropdown:hover > .nav-link .dropdown-arrow { /* Disable desktop hover arrow rotation */
+        transform: rotate(0deg);
+    }
+
 
     .nav-link {
-        padding: 0.8rem 1rem;
+        padding: 0.8rem 1.5rem; /* More padding for mobile */
         width: 100%;
-        justify-content: center; /* Center link text */
+        justify-content: space-between; /* Push arrow to the right */
+    }
+    .nav-link.dropdown-toggle { /* Specific for toggles */
+         cursor: pointer; /* Indicate it's clickable */
     }
 
-    .dropdown-menu {
-        position: static; /* Change dropdown to static for mobile */
+
+    /* Mobile Dropdown Menu (Click/Tap) */
+    .nav-menu .dropdown-menu {
+        display: none; /* Hidden by default, JS toggles .active */
+        position: static; /* No absolute positioning needed */
         box-shadow: none;
         border-top: 1px solid #eee;
         width: 100%;
         border-radius: 0;
         min-width: unset;
-        background-color: #f8f9fa; /* Slightly different background for mobile dropdown */
-    }
-    .nav-item.dropdown:hover .dropdown-menu {
-        display: none; /* Disable hover for mobile; use click/tap if needed */
-    }
-     /* If you want click to open dropdowns on mobile, JS would be needed to toggle .active on .dropdown-menu */
-    .nav-item.dropdown .dropdown-menu { /* Always show submenu items under parent in mobile if parent is visible */
-         display: block;
-         padding-left: 1rem; /* Indent sub-menu items */
-    }
-    .dropdown-menu li a {
-        padding: 0.6rem 1.5rem; /* Adjust padding for mobile */
+        background-color: #f8f9fa; /* Slightly different background */
+        padding-left: 1.5rem; /* Indent sub-menu items */
+        margin-top: 0;
+        margin-bottom: 0.5rem;
     }
 
+    .nav-menu .dropdown-menu.active { /* When toggled by JS */
+        display: block;
+    }
+
+    .nav-menu .dropdown-menu li a {
+        padding: 0.6rem 1.5rem; /* Adjust padding */
+        font-weight: normal;
+    }
 
     .nav-toggler {
-        display: block; /* Show hamburger icon */
+        display: flex; /* Changed to flex for better alignment of spans */
+        flex-direction: column;
+        justify-content: space-around; /* Evenly space the spans */
+        width: 30px; /* Fixed width */
+        height: 25px; /* Fixed height */
+        padding: 0; /* Remove padding to use flex alignment */
     }
 
-    /* Hamburger animation */
+    .nav-toggler span {
+        margin: 0; /* Remove margin as flex handles spacing */
+    }
+
     .nav-toggler.active span:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
@@ -322,7 +329,6 @@ a:focus {
         transform: translateY(-8px) rotate(-45deg);
     }
 }
-
 
 @media (max-width: 768px) {
     .container {
@@ -343,9 +349,6 @@ a:focus {
     }
     .nav-brand {
         font-size: 1.3rem;
-    }
-    body {
-        /* padding: 1rem 0.5rem; No longer needed with sticky nav */
     }
     .container {
         padding: 1.5rem 1rem;
